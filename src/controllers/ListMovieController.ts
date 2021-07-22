@@ -10,10 +10,10 @@ class ListMovieController {
         const movie = await listMovieService.execute(id)
 
         if(movie.length < 1) {
-            return response.json({"error" : "Not Found"});
+            return response.status(404).json({"error" : "Not Found"});
         }
 
-        return response.json(movie)
+        return response.status(200).json(movie)
     }
 }
 

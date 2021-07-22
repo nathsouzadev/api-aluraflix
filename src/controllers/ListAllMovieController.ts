@@ -7,7 +7,7 @@ class ListAllMovieController{
 
         const allMovies = await listAllMovie.execute();
 
-        return response.json(allMovies);
+        return response.status(200).json(allMovies);
     }
  }
 

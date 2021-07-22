@@ -10,7 +10,7 @@ class CreateMovieController{
         try {
             const newMovie = await createMovieService.execute({ title, description, url })
 
-            return response.json(newMovie);
+            return response.status(201).json(newMovie);
         } catch (error) {
             return response.json({ "error": error.message })
         }

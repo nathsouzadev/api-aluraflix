@@ -12,17 +12,17 @@ class UpdateMovieController {
         const movie = await listMovieService.execute(id)
 
         if(movie.length < 1) {
-            return response.json({"error" : "Not Found"});
+            return response.status(404).json({"error" : "Not Found"});
         }
 
         const updateMovieService = new UpdateMovieService();
 
         try {
             const updateMovie = await updateMovieService.execute({ id, title, description, url })
-            return response.json({"message" : "Movie updated successfully!"});
+            return response.status(204).json({"message" : "Movie updated successfully!"});
 
         } catch (error) {
-            return response.json({ "error": error.message })
+            return response.status(404).json({ "error": error.message })
         }
 
 

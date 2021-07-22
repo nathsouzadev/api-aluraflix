@@ -11,17 +11,17 @@ class DeleteMovieController {
         const movie = await listMovieService.execute(id)
 
         if(movie.length < 1) {
-            return response.json({"error" : "Not Found"});
+            return response.status(404).json({"error" : "Not Found"});
         }
 
         const deleteMovieService = new DeleteMovieService();
 
         try {
             const deleteMovie = await deleteMovieService.execute(id)
-            return response.json({"message" : "Movie deleted successfully!"});
+            return response.status(204).json({"message" : "Movie deleted successfully!"});
 
         } catch (error) {
-            return response.json({ "error": error.message })
+            return response.status(404).json({ "error": error.message })
         }
     }
 }
