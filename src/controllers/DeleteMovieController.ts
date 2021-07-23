@@ -1,23 +1,17 @@
 import { Request, Response } from "express";
 import { DeleteMovieService } from "../services/DeleteMovieService";
-import { ListMovieService } from "../services/ListMovieService";
+import { MovieAlreadyExists } from "../utils/MovieAlreadyExists";
 
 class DeleteMovieController {
     async handle(request: Request, response: Response){
         const { id } = request.params;
 
-        const listMovieService = new ListMovieService();
-
-        const movie = await listMovieService.execute(id)
-
-        if(movie.length < 1) {
-            return response.status(404).json({"error" : "Not Found"});
-        }
-
-        const deleteMovieService = new DeleteMovieService();
+        const movieAlreadyExists = new MovieAlreadyExists();
 
         try {
-            const deleteMovie = await deleteMovieService.execute(id)
+            await movieAlreadyExists.execute(id)
+            const deleteMovieService = new DeleteMovieService();
+            await deleteMovieService.execute(id)
             return response.status(204).json({"message" : "Movie deleted successfully!"});
 
         } catch (error) {

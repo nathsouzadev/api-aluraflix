@@ -1,19 +1,19 @@
 import { Request, Response } from "express";
-import { ListMovieService } from "../services/ListMovieService";
+import { MovieAlreadyExists } from "../utils/MovieAlreadyExists";
 
 class ListMovieController {
     async handle(request: Request, response: Response){
         const { id } = request.params;
 
-        const listMovieService = new ListMovieService();
+        const movieAlreadyExists = new MovieAlreadyExists();
 
-        const movie = await listMovieService.execute(id)
+        try {
+            const movie = await movieAlreadyExists.execute(id)
+            return response.status(200).json(movie);
 
-        if(movie.length < 1) {
-            return response.status(404).json({"error" : "Not Found"});
+        } catch (error) {
+            return response.status(404).json({ "error": error.message })
         }
-
-        return response.status(200).json(movie)
     }
 }
 
