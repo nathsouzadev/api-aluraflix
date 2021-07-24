@@ -1,9 +1,10 @@
 import { response } from "express";
 import { getCustomRepository } from "typeorm";
 import { MoviesRepository } from "../repositories/CreateMovieRepository";
+import { IMovie} from "../interfaces/IMovie"
 
 class DeleteMovieService {
-    async execute( id : string){
+    async execute({ id }:IMovie ){
         const deleteMovieRepository = getCustomRepository(MoviesRepository);
 
         const movieExists = await deleteMovieRepository.findOne({ id });
