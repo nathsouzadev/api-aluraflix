@@ -1,3 +1,4 @@
+// import { IMovie } from "../interfaces/IMovie";
 import { ListMovieService } from "../services/ListMovieService";
 
 class MovieAlreadyExists {

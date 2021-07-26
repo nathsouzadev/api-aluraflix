@@ -1,9 +1,9 @@
 import { getCustomRepository } from "typeorm";
 import { MoviesRepository } from "../repositories/CreateMovieRepository";
-import { IMovie} from "../interfaces/IMovie"
+// import { IMovie} from "../interfaces/IMovie"
 
 class ListMovieService {
-    async execute({ id }:IMovie ){
+    async execute(id: string ){
         const moviesRepository = getCustomRepository(MoviesRepository);
 
         const movie = await moviesRepository.find({

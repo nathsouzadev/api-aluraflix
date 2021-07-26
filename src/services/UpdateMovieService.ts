@@ -1,7 +1,13 @@
 import { getCustomRepository } from "typeorm";
 import { Movie } from "../entities/Movie";
 import { MoviesRepository } from "../repositories/CreateMovieRepository";
-import { IMovie} from "../interfaces/IMovie"
+
+interface IMovie {
+    id: string;
+    title: string;
+    description: string;
+    url: string;
+}
 
 class UpdateMovieService {
     async execute({ id, title, description, url}: IMovie){
