@@ -1,9 +1,9 @@
 import { Router, Request, Response } from "express";
-import { CreateMovieController } from "./controllers/CreateMovieController";
-import { ListAllMovieController } from "./controllers/ListAllMovieController";
-import { ListMovieController } from "./controllers/ListMovieController";
-import { UpdateMovieController } from "./controllers/UpdateMovieController";
-import { DeleteMovieController } from "./controllers/DeleteMovieController";
+import { CreateMovieController } from "../controllers/CreateMovieController";
+import { ListAllMovieController } from "../controllers/ListAllMovieController";
+import { ListMovieController } from "../controllers/ListMovieController";
+import { UpdateMovieController } from "../controllers/UpdateMovieController";
+import { DeleteMovieController } from "../controllers/DeleteMovieController";
 
 const router = Router();
 
