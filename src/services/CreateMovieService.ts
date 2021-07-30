@@ -7,17 +7,22 @@ interface IMovie {
     url: string;
 }
 class CreateMovieService {
+    
+    private moviesRepository: MoviesRepository;
+    
+    constructor(movieRepository: MoviesRepository = getCustomRepository(MoviesRepository)){
+        this.moviesRepository = movieRepository;
+    }
+
     async execute({ title, description, url }: IMovie){
-
-        const moviesRepository = getCustomRepository(MoviesRepository);
-
+    
         if(!title || !description || !url){
-            throw new Error("Please fill all fields");
+            throw new Error("Please fill all fields")
         }
 
-        const newMovie = moviesRepository.create({ title, description, url });
+        const newMovie = this.moviesRepository.create({ title, description, url });
 
-        await moviesRepository.save(newMovie);
+        await this.moviesRepository.save(newMovie);
 
         return newMovie;
     }
